@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT | DEVIN Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* [1. 기본 스타일 - 일관성 유지] */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background-color: #050203; color: #FEFFFC; font-family: 'Roboto', sans-serif; line-height: 1.6; }
+
+        /* [2. 1180px 그리드 시스템] */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(12, 80px); 
+            column-gap: 20px; 
+            width: 1180px; 
+            margin: 0 auto; 
+            padding-top: 150px; 
+        }
+
+        header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .logo { font-family: 'Readex Pro', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -1px; cursor: pointer; color: #FEFFFC; text-decoration: none; }
+        nav a { font-family: 'Roboto', sans-serif; color: #FEFFFC; text-decoration: none; margin-left: 40px; font-size: 0.9rem; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #888; }
+
+        /* [3. 섹션 공통 스타일] */
+        h2 { font-family: 'Readex Pro', sans-serif; font-size: 2rem; font-weight: 700; margin-bottom: 30px; border-left: 4px solid #333; padding-left: 20px; }
+        .section-margin { margin-bottom: 120px; }
+
+        /* [4. 자기소개 섹션] */
+        .about-hero { grid-column: 1 / span 9; margin-bottom: 80px; }
+        .about-hero h1 { font-family: 'Readex Pro', sans-serif; font-size: 3.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 20px; }
+        .about-hero p { font-size: 1.2rem; color: #a1a1a1; font-weight: 300; }
+
+        /* [5. 기술 스택 섹션] */
+        .stack-logic { grid-column: 1 / span 6; }
+        .stack-vision { grid-column: 7 / span 6; }
+        
+        .stack-list { list-style: none; margin-top: 20px; }
+        .stack-item { margin-bottom: 25px; }
+        .stack-item h3 { font-size: 0.9rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .stack-item p { font-size: 1.1rem; color: #FEFFFC; }
+
+        /* [6. 프로젝트/경력 섹션] */
+        .experience-section { grid-column: 1 / span 12; }
+        .exp-item { display: flex; margin-bottom: 40px; border-bottom: 1px solid #111; padding-bottom: 20px; }
+        .exp-date { width: 200px; color: #444; font-family: 'Readex Pro'; font-weight: 400; }
+        .exp-content h3 { font-family: 'Readex Pro'; font-size: 1.3rem; margin-bottom: 5px; }
+        .exp-content p { color: #888; font-size: 0.95rem; }
+
+        footer { padding: 100px 60px; text-align: center; font-size: 0.75rem; color: #333; letter-spacing: 1px; }
+
+        /* 반응형 */
+        @media (max-width: 1200px) {
+            .grid-container { width: 95%; display: block; padding: 150px 20px 0; }
+            .stack-logic, .stack-vision { width: 100%; margin-bottom: 50px; }
+            .about-hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">DEVIN</a>
+        <nav>
+            <a href="tech_page.html">Tech</a>
+            <a href="art_page.html">Art</a>
+            <a href="about_page.html" style="color: #888;">About</a>
+            <a href="contact_page.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="grid-container">
+        <section class="about-hero">
+            <h1>Bridging the gap between<br>Code and Canvas.</h1>
+            <p>컴퓨터공학 전공자로서의 논리적 사고와 컨셉 사진가로서의 시각적 감각을 결합하여,<br>사용자에게 잊지 못할 경험을 선사하는 Technical Artist를 목표로 합니다.</p>
+        </section>
+
+        <section class="stack-logic section-margin">
+            <h2>Logic</h2>
+            <div class="stack-list">
+                <div class="stack-item">
+                    <h3>Programming</h3>
+                    <p>C, C++, HTML/CSS, JavaScript</p>
+                </div>
+                <div class="stack-item">
+                    <h3>CS Core</h3>
+                    <p>Data Structures, Algorithms</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="stack-vision section-margin">
+            <h2>Vision</h2>
+            <div class="stack-list">
+                <div class="stack-item">
+                    <h3>Design Tools</h3>
+                    <p>Adobe Photoshop, Illustrator, Lightroom</p>
+                </div>
+                <div class="stack-item">
+                    <h3>Artistry</h3>
+                    <p>Conceptual Photography, Poster Design</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="experience-section section-margin">
+            <h2>Projects & Activity</h2>
+            
+            <div class="exp-item">
+                <div class="exp-date">2025 - Present</div>
+                <div class="exp-content">
+                    <h3>Portfolio Web Development</h3>
+                    <p>개인 브랜딩을 위한 반응형 웹 포트폴리오 설계 및 구현</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">2025. 12</div>
+                <div class="exp-content">
+                    <h3>Photography Club Exhibition</h3>
+                    <p>사진 동아리 정기 전시회 기획 및 포스터 디자인 총괄</p>
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <div class="exp-date">2025 - Ongoing</div>
+                <div class="exp-content">
+                    <h3>C++ Rendering Engine Study</h3>
+                    <p>그래픽스 라이브러리를 활용한 기초 렌더링 파이프라인 학습</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 DEVIN. PREPARING FOR TECHNICAL ARTIST. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>

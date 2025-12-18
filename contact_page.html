@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT | DEVIN Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* [1. 기본 스타일 - 일관성 유지] */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        body { background-color: #050203; color: #FEFFFC; font-family: 'Roboto', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+        /* [2. 1180px 그리드 시스템] */
+        .grid-container { 
+            display: grid; 
+            grid-template-columns: repeat(12, 80px); 
+            column-gap: 20px; 
+            width: 1180px; 
+            margin: 0 auto; 
+            padding-top: 180px; /* 헤더 여백 */
+        }
+
+        header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .logo { font-family: 'Readex Pro', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -1px; cursor: pointer; color: #FEFFFC; text-decoration: none; }
+        nav a { font-family: 'Roboto', sans-serif; color: #FEFFFC; text-decoration: none; margin-left: 40px; font-size: 0.9rem; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #888; }
+
+        /* [3. 컨택트 레이아웃] */
+        .profile-section {
+            grid-column: 1 / span 5;
+            text-align: left;
+        }
+
+        .profile-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background-color: #111; /* 이미지 로딩 전 배경 */
+            border-radius: 8px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border: 1px solid #1a1a1a;
+        }
+
+        .info-section {
+            grid-column: 7 / span 6;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-section h1 {
+            font-family: 'Readex Pro', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            letter-spacing: -2px;
+        }
+
+        /* 연락처 리스트 스타일 */
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-item {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #111;
+            padding-bottom: 15px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-item:hover { border-color: #333; }
+
+        .contact-item h2 {
+            font-size: 0.75rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .contact-item a {
+            font-family: 'Readex Pro', sans-serif;
+            font-size: 1.4rem;
+            color: #FEFFFC;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover { color: #888; }
+
+        footer { padding: 100px 60px; text-align: center; font-size: 0.75rem; color: #333; letter-spacing: 1px; }
+
+        /* 반응형 대응 */
+        @media (max-width: 1200px) {
+            .grid-container { width: 90%; display: flex; flex-direction: column; padding-top: 120px; }
+            .profile-section { width: 100%; margin-bottom: 50px; }
+            .info-section h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">DEVIN</a>
+        <nav>
+            <a href="tech_page.html">Tech</a>
+            <a href="art_page.html">Art</a>
+            <a href="about_page.html">About</a>
+            <a href="contact_page.html" style="color: #888;">Contact</a>
+        </nav>
+    </header>
+
+    <div class="grid-container">
+        <section class="profile-section">
+            <img src="assets/profile.png" alt="Devin Profile Character" class="profile-img">
+            <p style="color: #444; font-size: 0.9rem;">Technical Artist & Developer DEVIN</p>
+        </section>
+
+        <section class="info-section">
+            <h1>Get in touch.</h1>
+            
+            <ul class="contact-list">
+                <li class="contact-item">
+                    <h2>Email</h2>
+                    <a href="lee.lyunghee@gmail.com">lee.lyunghee@gmail.com</a>
+                </li>
+                <li class="contact-item">
+                    <h2>Instagram (Photography)</h2>
+                    <a href="https://www.instagram.com/lyung.pic/" target="_blank">@lyung.pic</a>
+                </li>
+                <li class="contact-item">
+                    <h2>GitHub (Logic)</h2>
+                    <a href="https://github.com/lyungali" target="_blank">github.com/lyungali</a>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2025 DEVIN. PREPARING FOR TECHNICAL ARTIST. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>

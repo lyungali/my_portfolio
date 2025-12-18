@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ART | DEVIN Portfolio</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <style>
+        /* [1. 기본 스타일 및 보안 설정] */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { 
+            background-color: #050203; color: #FEFFFC; 
+            font-family: 'Roboto', sans-serif; overflow-x: hidden; line-height: 1.6;
+            -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;
+        }
+
+        /* 이미지 보안 및 선명도 최적화 */
+        img {
+            -webkit-user-drag: none;
+            image-rendering: -webkit-optimize-contrast; /* 선명도 보정 */
+            image-rendering: high-quality;
+        }
+
+        /* [2. 1180px 그리드 시스템] */
+        .grid-container { width: 1180px; margin: 0 auto; padding-top: 150px; }
+
+        /* [3. 헤더 영역 - 메인 페이지와 동일] */
+        header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .logo { font-family: 'Readex Pro', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -1px; cursor: pointer; color: #FEFFFC; text-decoration: none; }
+        nav a { font-family: 'Roboto', sans-serif; color: #FEFFFC; text-decoration: none; margin-left: 40px; font-size: 0.9rem; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #888; }
+
+        /* 페이지 타이틀 */
+        .page-title { grid-column: 1 / span 12; margin-bottom: 40px; }
+        .page-title h1 { font-family: 'Readex Pro', sans-serif; font-size: 3rem; font-weight: 700; margin-bottom: 10px; }
+        .page-title p { color: #666; font-weight: 300; letter-spacing: 1px; }
+
+        /* [4. 슬라이더 스타일 - 선명도 강화 버전] */
+        .swiper { width: 100%; padding-top: 50px; padding-bottom: 100px; }
+        .swiper-slide {
+            width: 400px; height: 564px; /* A3 비율 */
+            border-radius: 4px; overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+            background-color: #111;
+            /* 렌더링 이슈 해결을 위한 가속 설정 */
+            will-change: transform;
+            transform: translateZ(0); 
+        }
+
+        .swiper-slide img { 
+            display: block; width: 100%; height: 100%; 
+            object-fit: cover; 
+            /* 이미지 깨짐 방지 핵심 속성 */
+            image-rendering: -webkit-optimize-contrast;
+            transform: scale(1.01); /* 미세한 확대로 앨리어싱 방지 */
+        }
+
+        .poster-info { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #444; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* [5. 푸터 영역] */
+        footer { padding: 100px 60px; text-align: center; font-size: 0.75rem; color: #333; letter-spacing: 1px; }
+
+        @media (max-width: 1200px) {
+            .grid-container { width: 95%; }
+            .swiper-slide { width: 300px; height: 423px; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false">
+
+    <header>
+        <a href="index.html" class="logo">DEVIN</a>
+        <nav>
+            <a href="tech_page.html">Tech</a>
+            <a href="art_page.html" style="color: #888;">Art</a>
+            <a href="about_page.html">About</a>
+            <a href="contact_page.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="grid-container">
+        <div class="page-title">
+            <h1>VISION</h1>
+            <p>Conceptual Photography & Graphic Poster Series</p>
+        </div>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="assets/artpage-poster-01.webp" alt="Poster 01"></div>
+                <div class="swiper-slide"><img src="assets/artpage-poster-02.webp" alt="Poster 02"></div>
+                <div class="swiper-slide"><img src="assets/artpage-poster-03.webp" alt="Poster 03"></div>
+                <div class="swiper-slide"><img src="assets/artpage-poster_아트보드 4-04.webp" alt="Poster 04"></div>
+                <div class="swiper-slide"><img src="assets/artpage-poster-05.webp" alt="Poster 05"></div>
+                <div class="swiper-slide"><img src="assets/artpage-poster-06.webp" alt="Poster 06"></div>
+            </div>
+        </div>
+
+        <div class="poster-info">
+            <p>Drag horizontally to explore the vision</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 DEVIN. PREPARING FOR TECHNICAL ARTIST. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        /* 보안 설정: 드래그 방지 */
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.nodeName === 'IMG') e.preventDefault();
+        }, false);
+
+        /* 슬라이더 설정: 부드러움 및 선명도 유지 */
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            initialSlide: 1,
+            speed: 800,
+            touchRatio: 1.2,
+            slideToClickedSlide: true,
+            
+            coverflowEffect: {
+                rotate: 15,
+                stretch: -10,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true,
+            },
+
+            mousewheel: {
+                forceToAxis: true,
+                thresholdDelta: 70,
+            },
+            keyboard: { enabled: true },
+        });
+    </script>
+</body>
+</html>

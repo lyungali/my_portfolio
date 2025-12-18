@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Artist & Developer | DEVIN</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* [기본 스타일 초기화] */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        body { background-color: #050203; color: #FEFFFC; font-family: 'Roboto', sans-serif; overflow-x: hidden; line-height: 1.6; }
+
+        /* [핵심: 12열 그리드 시스템 - 1180px] */
+        .grid-container { display: grid; grid-template-columns: repeat(12, 80px); column-gap: 20px; width: 1180px; margin: 0 auto; }
+
+        /* [헤더 영역] */
+        header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
+        .logo { 
+                font-family: 'Readex Pro', sans-serif; 
+                font-weight: 700; 
+                font-size: 1.6rem; 
+                letter-spacing: -1px; 
+                cursor: pointer;
+                
+                color: #FEFFFC; /* 폰트 색상을 직접 명시 */
+                text-decoration: none; /* 밑줄 제거 */
+            }
+        nav a { 
+            font-family: 'Roboto', sans-serif;
+            color: #FEFFFC; text-decoration: none;
+            margin-left: 40px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+        nav a:hover { color: #888; }
+
+        /* [인트로 섹션] */
+        .intro-section { height: 70vh; display: flex; align-items: center; }
+        .intro-content { grid-column: 1 / span 9; text-align: left; }
+        .intro-content h1 { font-family: 'Readex Pro', sans-serif; font-size: 4rem; font-weight: 700; margin-bottom: 24px; letter-spacing: -2px; line-height: 1.1; }
+        .intro-content p { font-family: 'Readex Pro', sans-serif; font-weight: 400; font-size: 1.4rem; color: #a1a1a1; max-width: 850px; }
+        .intro-content b { font-weight: 700; color: #FEFFFC; }
+
+        /* [선택 섹션 - 배경 이미지 적용] */
+        .selection-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .selection-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            color: #FEFFFC;
+            position: relative;
+            overflow: hidden;
+            transition: flex 0.7s cubic-bezier(0.075, 0.82, 0.165, 1);
+            
+            /* 이미지가 꽉 차고 중앙에 오도록 설정 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: #0a0a0a; /* 이미지 로딩 전 기본색 */
+        }
+
+        /* 실제 이미지 경로 연결 */
+        .tech-box { 
+            background-image: url('assets/mainpage_coding.jpg'); 
+            border-right: 1px solid rgba(255,255,255,0.1); 
+        }
+        .art-box { 
+            background-image: url('assets/mainpage_poster.jpg'); 
+        }
+
+        .selection-box h2 {
+            font-family: 'Readex Pro', sans-serif;
+            font-size: 6rem;
+            font-weight: 700;
+            z-index: 2; /* 배경 오버레이보다 위에 글씨가 와야 함 */
+            transition: transform 0.5s ease;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3); /* 가독성을 위한 그림자 */
+        }
+
+        .selection-box:hover { flex: 1.4; }
+        .selection-box:hover h2 { transform: scale(1.1); }
+
+        /* 배경 오버레이 (이미지 위에 반투명 검정막을 씌워 글씨가 잘 보이게 함) */
+        .selection-box::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); /* 50% 투명 블랙 */
+            z-index: 1;
+            transition: background 0.5s ease;
+        }
+        
+        /* 마우스 올렸을 때 오버레이를 조금 더 밝게 해서 이미지를 강조 */
+        .selection-box:hover::before {
+             background: rgba(0,0,0,0.3);
+        }
+
+        /* [푸터] */
+        footer { padding: 100px 60px; text-align: center; font-size: 0.75rem; color: #333; letter-spacing: 1px; }
+
+        /* 반응형 대응 */
+        @media (max-width: 1200px) {
+            .grid-container { width: 95%; grid-template-columns: repeat(12, 1fr); }
+            .intro-content { grid-column: 1 / span 12; padding: 0 20px; }
+            .intro-content h1 { font-size: 2.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">DEVIN</a>
+        <nav>
+            <a href="tech_page.html">Tech</a>
+            <a href="art_page.html">Art</a>
+            <a href="about_page.html">About</a>
+            <a href="contact_page.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="intro-section">
+        <div class="grid-container">
+            <div class="intro-content">
+                <h1>Technical Artist & Developer</h1>
+                <p>
+                    컴퓨터공학의 <b>논리</b>를 바탕으로 시각적 한계를 넘어서는 <br>
+                    <b>Technical Artist</b>를 꿈꾸며, 그 과정을 기록하고 있습니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <main class="selection-container">
+        <a href="tech_page.html" class="selection-box tech-box">
+            <h2>Technical</h2>
+        </a>
+        <a href="art_page.html" class="selection-box art-box">
+            <h2>Artist</h2>
+        </a>
+    </main>
+
+    <footer>
+        <p>© 2025 DEVIN. PREPARING FOR TECHNICAL ARTIST. ALL RIGHTS RESERVED.</p>
+    </footer>
+
+</body>
+</html>
