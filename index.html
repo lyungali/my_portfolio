@@ -150,39 +150,29 @@
         }
 
         /* 아주 작은 스마트폰 대응 (480px 이하) */
+        /* 아주 작은 스마트폰 대응 (480px 이하) */
         @media (max-width: 480px) {
-            /* 1. 헤더를 수직 정렬로 변경하여 공간 확보 */
-            header {
-                flex-direction: column; 
-                padding: 20px;
-                background: rgba(5, 2, 3, 0.9); /* 가독성을 위해 배경을 살짝 더 진하게 */
-                backdrop-filter: blur(10px); /* 뒤쪽 이미지가 살짝 비치는 효과 */
-            }
+            /* ... header, logo, nav 설정은 그대로 유지 ... */
 
-            /* 2. 로고 위치와 크기 조정 */
-            .logo {
-                margin-bottom: 15px;
-                font-size: 1.4rem;
-            }
-
-            /* 3. 메뉴 영역 보이기 및 간격 최적화 */
-            nav {
-                display: flex; /* 다시 보이게 설정 */
-                justify-content: center;
-                width: 100%;
-            }
-
-            nav a {
-                margin: 0 10px; /* 좌우 간격을 동일하게 좁힘 */
-                font-size: 0.75rem; /* 글자 크기를 살짝 줄임 */
-                letter-spacing: 1px;
-            }
-
-            /* 4. 인트로 섹션 여백 조정 (헤더가 길어진 만큼 내려줌) */
+            /* 4. 인트로 섹션 여백 조정 (핵심 수정) */
             .intro-section {
-                padding-top: 100px;
+                /* 기존 100px에서 160px로 여유 있게 늘림 */
+                padding-top: 160px; 
                 height: auto;
-                min-height: 40vh;
+                min-height: 50vh; /* 화면의 절반 정도를 차지하도록 조정 */
+                display: flex;
+                align-items: flex-start; /* 중앙 정렬보다는 위쪽 정렬이 SE에서 안정적임 */
+            }
+
+            .intro-content h1 {
+                /* SE 화면에서 제목이 너무 크면 여러 줄로 깨지므로 크기 미세 조절 */
+                font-size: 1.8rem; 
+                line-height: 1.2;
+            }
+
+            .intro-content p {
+                font-size: 0.95rem;
+                margin-top: 10px;
             }
         }
     </style>
