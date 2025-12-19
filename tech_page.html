@@ -10,96 +10,180 @@
     <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* [기존 스타일 유지...] */
+        /* [1. 기본 스타일 및 초기화] */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
-        body { background-color: #050203; color: #FEFFFC; font-family: 'Roboto', sans-serif; line-height: 1.6; }
+        body { background-color: #050203; color: #FEFFFC; font-family: 'Roboto', sans-serif; line-height: 1.6; overflow-x: hidden; }
 
-        .grid-container { 
-            display: grid; 
-            grid-template-columns: repeat(12, 80px); 
-            column-gap: 20px; 
-            width: 1180px; 
-            margin: 0 auto; 
-            padding-top: 150px; 
-        }
-
-        header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; }
-        .logo { font-family: 'Readex Pro', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -1px; cursor: pointer; color: #FEFFFC; text-decoration: none; }
+        /* [2. 헤더 디자인] */
+        header { position: fixed; top: 0; width: 100%; padding: 40px 60px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; background: rgba(5, 2, 3, 0.8); backdrop-filter: blur(10px); }
+        .logo { font-family: 'Readex Pro', sans-serif; font-weight: 700; font-size: 1.6rem; letter-spacing: -1px; color: #FEFFFC; text-decoration: none; }
         nav a { font-family: 'Roboto', sans-serif; color: #FEFFFC; text-decoration: none; margin-left: 40px; font-size: 0.9rem; font-weight: 400; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
         nav a:hover { color: #888; }
 
-        .page-title { grid-column: 1 / span 12; margin-bottom: 60px; }
+        /* [3. 그리드 레이아웃 설정] */
+        .grid-container { 
+            width: 1180px; 
+            margin: 0 auto; 
+            padding-top: 180px; 
+        }
+
+        .page-title { margin-bottom: 60px; }
         .page-title h1 { font-family: 'Readex Pro', sans-serif; font-size: 3rem; font-weight: 700; }
 
+        /* 테크 그리드: 간격을 60px로 넓혀 겹침 최소화 */
         .tech-grid {
-            grid-column: 1 / span 12;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 60px; 
             margin-bottom: 100px;
         }
 
-        /* [수정 포인트 1: 카드 레이어 관리] */
+        /* 호버 시 다른 카드들을 흐리게 만드는 효과 (전체 그리드 호버 시) */
+        .tech-grid:hover .project-card { opacity: 0.4; }
+
+        /* [4. 프로젝트 카드 디자인] */
         .project-card {
             position: relative;
             background-color: #0a0a0a;
             border: 1px solid #1a1a1a;
-            height: 300px;
-            border-radius: 4px;
+            height: 320px;
+            border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1; /* 기본 순위 */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            z-index: 1;
         }
 
-        /* 호버 시 해당 카드를 모든 그리드보다 위로 올림 */
         .project-card:hover { 
+            opacity: 1 !important; /* 호버된 카드만 선명하게 */
             border-color: #444; 
-            transform: translateY(-5px); 
-            z-index: 500; /* 정보 박스가 가려지지 않게 최상위로 설정 */
+            transform: translateY(-8px); 
+            z-index: 500; /* 정보 박스가 위로 오도록 */
+            background-color: #111;
         }
 
         .card-inner { padding: 30px; display: flex; flex-direction: column; justify-content: flex-end; height: 100%; }
-        .card-inner h2 { font-family: 'Readex Pro', sans-serif; font-size: 1.5rem; margin-bottom: 10px; }
+        .card-inner h2 { font-family: 'Readex Pro', sans-serif; font-size: 1.4rem; margin-bottom: 10px; }
 
-        /* [수정 포인트 2: 정보 박스 위치 및 가독성] */
+        /* [5. 정보 박스: 겹침 방지 및 가독성 최적화] */
         .info-box {
             position: absolute;
             top: 0;
-            left: 105%; /* 기본은 오른쪽 */
-            width: 320px;
-            background-color: #161616; /* 가독성을 위해 살짝 더 밝은 회색 */
+            left: calc(100% + 20px); /* 카드 오른쪽에 20px 간격 두고 배치 */
+            width: 280px; /* 너비를 줄여 공간 확보 */
+            background-color: #161616;
             padding: 25px;
-            border-radius: 4px;
+            border-radius: 8px;
             opacity: 0;
             visibility: hidden;
             transform: translateX(-15px);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            pointer-events: none; /* 정보 박스 위로 마우스가 가도 카드 호버 유지 */
+            transition: all 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            pointer-events: none;
             border: 1px solid #333;
         }
 
-        /* [수정 포인트 3: 3번째 열 카드 대응 (역방향 출력)] */
+        /* 3번째 열(오른쪽 끝) 카드는 정보창을 왼쪽으로 띄움 */
         .project-card:nth-child(3n) .info-box {
             left: auto;
-            right: 105%; /* 3의 배수 카드는 왼쪽으로 생성 */
+            right: calc(100% + 20px);
             transform: translateX(15px);
         }
         
-        /* 호버 시 박스 등장 */
         .project-card:hover .info-box {
             opacity: 1;
             visibility: visible;
             transform: translateX(0);
         }
 
-        /* 정보 박스 내용 디자인 */
-        .info-box h3 { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .info-box p { font-size: 0.95rem; color: #e0e0e0; margin-bottom: 20px; font-weight: 300; }
-        .info-box .tech-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-        .info-box .tag { font-size: 0.7rem; color: #aaa; border: 1px solid #333; padding: 4px 10px; border-radius: 2px; }
+        /* 정보 박스 내부 텍스트 스타일 */
+        .info-box h3 { font-size: 0.7rem; color: #666; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .info-box p { font-size: 0.9rem; color: #ccc; margin-bottom: 18px; font-weight: 300; }
+        .tech-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+        .tag { font-size: 0.65rem; color: #888; border: 1px solid #222; padding: 3px 8px; border-radius: 4px; background: #0a0a0a; }
 
-        footer { padding: 100px 60px; text-align: center; font-size: 0.75rem; color: #333; letter-spacing: 1px; }
+        /* [6. 푸터] */
+        footer { padding: 80px 60px; text-align: center; font-size: 0.75rem; color: #444; letter-spacing: 1px; }
+
+/* [7. 반응형 대응 (1200px 이하)] */
+        @media (max-width: 1200px) {
+            /* --- [헤더 스택 로직 추가] --- */
+            header {
+                flex-direction: column; /* 로고와 메뉴를 위아래로 */
+                padding: 20px 0;
+                background: rgba(5, 2, 3, 0.95);
+                backdrop-filter: blur(15px);
+            }
+
+            .logo { 
+                margin-bottom: 15px; 
+                font-size: 1.4rem; 
+            }
+
+            nav { 
+                display: flex; 
+                justify-content: center; 
+                width: 100%; 
+            }
+
+            nav a { 
+                margin: 0 12px; 
+                font-size: 0.75rem; 
+                letter-spacing: 1px;
+            }
+
+            /* --- [기존 그리드/카드 로직 유지] --- */
+            .grid-container { 
+                width: 100%; 
+                /* 헤더가 길어진 만큼 패딩 상단을 조금 더 늘려줍니다 (120px -> 140px) */
+                padding: 140px 20px 0 20px; 
+                display: block; 
+            }
+
+            .tech-grid { 
+                display: flex;
+                flex-direction: column;
+                gap: 30px; 
+            }
+
+            .project-card { 
+                height: auto; 
+                min-height: auto; 
+                display: flex;
+                flex-direction: column;
+                cursor: default;
+            }
+
+            .card-inner { 
+                height: auto; 
+                padding: 25px 25px 15px 25px; 
+            }
+
+            .card-inner h2 {
+                font-size: 1.2rem;
+                margin-bottom: 0;
+            }
+
+            .info-box {
+                position: static; 
+                width: 100%;
+                opacity: 1;
+                visibility: visible;
+                transform: none !important;
+                background-color: transparent; 
+                padding: 0 25px 25px 25px; 
+                box-shadow: none;
+                border: none;
+                pointer-events: auto;
+            }
+
+            .info-box h3 { margin-top: 15px; color: #888; }
+            .info-box p { font-size: 0.85rem; margin-bottom: 12px; }
+
+            .project-card:hover { 
+                transform: none; 
+                border-color: #1a1a1a;
+            }
+        }
     </style>
 </head>
 <body>
@@ -117,7 +201,7 @@
     <div class="grid-container">
         <div class="page-title">
             <h1>LOGIC</h1>
-            <p>Computer Science & Technical Art Projects</p>
+            <p style="color: #666;">Computer Science & Technical Art Projects</p>
         </div>
 
         <main class="tech-grid">
@@ -127,15 +211,13 @@
                 </div>
                 <div class="info-box">
                     <h3>Project Info</h3>
-                    <p>HTML과 CSS를 이용한 홈페이지 만들기</p>
+                    <p>HTML/CSS 기반의 반응형 개인 포트폴리오 사이트 제작</p>
                     <h3>Tech Stack</h3>
                     <div class="tech-tags">
                         <span class="tag">HTML5</span>
                         <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
+                        <span class="tag">GitHub Pages</span>
                     </div>
-                    <h3 style="margin-top:15px;">Role</h3>
-                    <p style="font-size: 0.85rem;">UI/UX Design & Frontend Dev</p>
                 </div>
             </div>
 
@@ -145,16 +227,31 @@
                 </div>
                 <div class="info-box">
                     <h3>Project Info</h3>
-                    <p>C++을 이용한 기초 렌더링 엔진 구조 설계</p>
+                    <p>C++과 OpenGL을 이용한 기초 렌더링 파이프라인 연구</p>
                     <h3>Tech Stack</h3>
                     <div class="tech-tags">
                         <span class="tag">C++</span>
                         <span class="tag">OpenGL</span>
+                        <span class="tag">GLSL</span>
                     </div>
                 </div>
             </div>
 
-            </main>
+            <div class="project-card">
+                <div class="card-inner">
+                    <h2>Shader Art</h2>
+                </div>
+                <div class="info-box">
+                    <h3>Project Info</h3>
+                    <p>수학적 함수를 이용한 절차적 텍스처 및 셰이더 시각화</p>
+                    <h3>Tech Stack</h3>
+                    <div class="tech-tags">
+                        <span class="tag">HLSL</span>
+                        <span class="tag">Unity</span>
+                    </div>
+                </div>
+            </div>
+        </main>
     </div>
 
     <footer>
